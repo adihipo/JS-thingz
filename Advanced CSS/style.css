@@ -45,9 +45,22 @@
   padding: 1%;
   margin: 1%;
   text-align: justify;
+  background-color: lightgray;
 }
 
 .image {
   float: right;
   margin: 10px;
+}
+
+.content::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.end {
+  width: 100%;
+  text-align: center;
+  background-color: lightgray;
 }
