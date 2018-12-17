@@ -1,0 +1,39 @@
+.links {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+}
+
+.links a {
+  text-decoration: none;
+  width: 31%;
+  display: inline-block;
+  padding: 1%;
+  border: 2px blueviolet;
+  background-color: beige;
+  text-align: center;
+}
+
+.links:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#banner {
+  max-height: 350px;
+  overflow: hidden;
+  position: relative;
+}
+
+#banner h1{
+  position: absolute;
+  top: 70px;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  background-color: white;
+  color: black;
+}
