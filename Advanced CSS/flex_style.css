@@ -1,0 +1,31 @@
+body {
+  background-color: lightgray;
+}
+
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.flex-container {
+  display: flex;
+  background-color: white;
+}
+
+.box {
+  height: 100px;
+  min-width: 100px;
+}
+
+.one {
+  background-color: lightslategray;
+}
+
+.two {
+  background-color: yellowgreen;
+}
+
+.three {
+  background-color: peru;
+}
