@@ -1,7 +1,38 @@
 body {
   background-color: antiquewhite;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-li {
-  color: brown;
+a {
+  text-decoration: none;
+  background-color: white;
+  color: black;
+  padding: 0px 20px;
+}
+
+p {
+  padding: 0px 100px;
+  font-weight: bolder;
+  display: inline;
+}
+
+a:hover {
+  background-color: brown;
+  color: white;
+}
+
+th {
+  background-color: black;
+  color: white;
+}
+
+td {
+  background-color: burlywood;
+  color: black;
+}
+
+td:nth-child(2n){
+  display: block;
+  content: "";
+  padding: 20px 200px;
 }

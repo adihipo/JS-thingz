@@ -14,19 +14,29 @@
     <a href=<%= '?alcohol=' + alcohol %>><%= alcohol %></a>
   <% }); %>
 
-  <ul>
-    <% cocktails.forEach(function(cocktail){ %>
-      <% if(cocktail.contains.includes(qs.alcohol) || qs.alcohol == null){ %>
-        <li><%= cocktail.name %></li>
-    <% }}); %>
-  </ul>
-
   <p>Selected option: 
-    <% if(qs.alcohol != null){ %>
-    <%= qs.alcohol %>
-    <% }else { %>
-    <%= 'all' %>
-    <% }; %></p>
+      <% if(qs.alcohol != null){ %>
+      <%= qs.alcohol %>
+      <% }else { %>
+      <%= 'all' %>
+      <% }; %></p>
+
+  <table>
+      <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+      </tr>
+          <% cocktails.forEach(function(cocktail){ %>
+            <% if(cocktail.contains.includes(qs.alcohol) || qs.alcohol == null){ %>
+              <tr>
+                <td><%= cocktail.name %><% if(!cocktail.isAlcoholic){ %>
+                  <%= '(non alcoholic)' %>
+                <%  }; %>
+                <br><%= cocktail.contains %></td>
+                <td><%= cocktail.price %></td>
+            </tr>
+          <% }}); %>
+    </table>
   
 </body>
 </html>
