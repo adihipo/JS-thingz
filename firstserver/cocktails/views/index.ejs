@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="/static/style.css">
+  <title>Cocktails</title>
+</head>
+<body>
+  <h1>Our cocktails</h1>
+  <a href="/">all</a>
+  <% alcoholList.forEach(function(alcohol){ %>
+    <a href=<%= '?alcohol=' + alcohol %>><%= alcohol %></a>
+  <% }); %>
+
+  <ul>
+    <% cocktails.forEach(function(cocktail){ %>
+      <% if(cocktail.contains.includes(qs.alcohol) || qs.alcohol == null){ %>
+        <li><%= cocktail.name %></li>
+    <% }}); %>
+  </ul>
+
+  <p>Selected option: 
+    <% if(qs.alcohol != null){ %>
+    <%= qs.alcohol %>
+    <% }else { %>
+    <%= 'all' %>
+    <% }; %></p>
+  
+</body>
+</html>
