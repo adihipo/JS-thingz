@@ -14,14 +14,19 @@ function enlargeIMG(data) {
     var img = document.getElementsByTagName('img');
     for(let i = 0; i < img.length; i++) {
       img[i].onclick = () => {
-        for(let j = 0; j < img.length; j++) {
-          img[j].setAttribute('src', data.data[j].images.fixed_width_small_still.url);
-          if(!img[j].classList.contains('thumbs')) {
-            img[j].classList.add('thumbs');
+        if(!img[i].classList.contains('thumbs')) {
+          img[i].classList.add('thumbs');
+          img[i].setAttribute('src', data.data[i].images.fixed_width_small_still.url);
+        } else {
+          for(let j = 0; j < img.length; j++) {
+            if(!img[j].classList.contains('thumbs')) {
+              img[j].classList.add('thumbs');
+              img[j].setAttribute('src', data.data[j].images.fixed_width_small_still.url);
+            }
           }
+          img[i].classList.remove('thumbs');
+          img[i].setAttribute('src', data.data[i].images.original.url);
         }
-        img[i].classList.remove('thumbs');
-        img[i].setAttribute('src', data.data[i].images.original.url);
       }
     }
   });
