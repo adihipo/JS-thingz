@@ -1,0 +1,9 @@
+img {
+  display: inline-block;
+  padding: 20px;
+}
+
+.thumbs {
+  width: 100px;
+  height: 100px;
+}
