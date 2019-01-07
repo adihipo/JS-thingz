@@ -1,8 +1,8 @@
 #banner {
-  max-height: 350px;
+  max-height: 330px;
   overflow: hidden;
   position: relative;
-  margin: 0 0 50px 0;
+  margin: 0 0 30px 0;
 }
 
 #banner h1 {
@@ -31,13 +31,15 @@ button {
 
 label {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 20px;
+  font-size: 25px;
   padding: 0 15%;
+  display: inline-block;
 }
 
 input {
   margin: 10px auto;
   width: 49%;
+  padding: 5px 0;
   background-color: black;
   color: white;
   display: inline-block;
@@ -45,9 +47,11 @@ input {
 
 #resultsentence {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  display: inline-block;
+  font-size: 25px;
+  text-align: center;
+  display: block;
 }
 
-#kittens {
+.kittens {
   display: inline-block;
 }
