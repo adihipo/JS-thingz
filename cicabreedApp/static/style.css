@@ -19,6 +19,33 @@
   display: none;
 }
 
+.input-container {
+  width: 20%;
+  padding: 0 14%;
+  display: inline-block;
+}
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+          font-size: 30px;
+          padding: 10px;
+          width: 50px;
+          height: 50px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+}
+
+.updown {
+  width: 30px;
+  height: 30px;
+  padding: 20px 0 0 0;
+}
+
 button {
   display: block;
   margin: 50px auto;
@@ -32,7 +59,7 @@ button {
 label {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 25px;
-  padding: 0 15%;
+  padding: 0 12%;
   display: inline-block;
 }
 
