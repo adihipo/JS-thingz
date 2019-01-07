@@ -1,0 +1,53 @@
+#banner {
+  max-height: 350px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 0 50px 0;
+}
+
+#banner h1 {
+  position: absolute;
+  top: 70px;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  background-color: white;
+  color: black;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  display: block;
+  margin: 50px auto;
+  background-color: black;
+  color: antiquewhite;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 50px;
+  border-style: groove;
+}
+
+label {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 20px;
+  padding: 0 15%;
+}
+
+input {
+  margin: 10px auto;
+  width: 49%;
+  background-color: black;
+  color: white;
+  display: inline-block;
+}
+
+#resultsentence {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: inline-block;
+}
+
+#kittens {
+  display: inline-block;
+}
