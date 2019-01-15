@@ -1,0 +1,36 @@
+body {
+  font-family: 'Coiny', cursive;
+  background-color: lightgrey;
+  border-radius: 15px;
+}
+
+span {
+  display: block;
+}
+
+.message {
+  background-color: grey;
+  color: white;
+  padding: 10px;
+  margin: 2%;
+  display: block;
+  border-radius: 15px;
+}
+
+.title {
+  font-size: 30px;
+}
+
+.url {
+  font-size: 30px;
+}
+
+.time {
+  font-size: 15px;
+  display: inline;
+}
+
+.score {
+  font-size: 30px;
+  display: inline;
+}

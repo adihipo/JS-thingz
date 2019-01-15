@@ -19,7 +19,7 @@ module.exports = function(app){
     console.log('connected as id ' + connection.threadId);
   });
 
-  app.get('/posts', function(req, res) {
+  app.get('/api/posts', function(req, res) {
     connection.query('SELECT * FROM messages;', function(err, rows) {
       if (err) {
         console.log(err.toString());
@@ -30,7 +30,7 @@ module.exports = function(app){
     });
   });
 
-  app.post('/posts', function(req, res) {
+  app.post('/api/posts', function(req, res) {
     const title = req.body.title;
     const url = req.body.url;
     const timestamp = time();
@@ -56,7 +56,7 @@ module.exports = function(app){
     }
   });
 
-  app.put('/posts/:id/downvote', function(req, res) {
+  app.put('/api/posts/:id/downvote', function(req, res) {
     connection.query(`UPDATE messages SET score = score - 1 WHERE id = ?;`, [req.params.id], function(err, rows) {
       if (err) {
         console.log(err.toString());
@@ -74,7 +74,7 @@ module.exports = function(app){
     });
   });
 
-  app.put('/posts/:id/upvote', function(req, res) {
+  app.put('/api/posts/:id/upvote', function(req, res) {
     connection.query(`UPDATE messages SET score = score + 1 WHERE id = ?;`, [req.params.id], function(err, rows) {
       if (err) {
         console.log(err.toString());
@@ -90,6 +90,10 @@ module.exports = function(app){
         res.send(rows);
       });
     });
+  });
+
+  app.get('/home', function(req, res) {
+    res.render('home');
   });
   
 };
