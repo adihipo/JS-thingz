@@ -57,11 +57,39 @@ module.exports = function(app){
   });
 
   app.put('/posts/:id/downvote', function(req, res) {
-    res.send(req.params.id);
+    connection.query(`UPDATE messages SET score = score - 1 WHERE id = ?;`, [req.params.id], function(err, rows) {
+      if (err) {
+        console.log(err.toString());
+        res.status(500).send('Database error');
+        return;
+      }
+      connection.query(`SELECT * FROM messages WHERE id = ?;`, [req.params.id], function(err, rows) {
+        if (err) {
+          console.log(err.toString());
+          res.status(500).send('Database error');
+          return;
+        }
+        res.send(rows);
+      });
+    });
   });
 
   app.put('/posts/:id/upvote', function(req, res) {
-    res.send(req.params.id);
+    connection.query(`UPDATE messages SET score = score + 1 WHERE id = ?;`, [req.params.id], function(err, rows) {
+      if (err) {
+        console.log(err.toString());
+        res.status(500).send('Database error');
+        return;
+      }
+      connection.query(`SELECT * FROM messages WHERE id = ?;`, [req.params.id], function(err, rows) {
+        if (err) {
+          console.log(err.toString());
+          res.status(500).send('Database error');
+          return;
+        }
+        res.send(rows);
+      });
+    });
   });
   
 };
