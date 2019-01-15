@@ -55,5 +55,13 @@ module.exports = function(app){
       });
     }
   });
+
+  app.put('/posts/:id/downvote', function(req, res) {
+    res.send(req.params.id);
+  });
+
+  app.put('/posts/:id/upvote', function(req, res) {
+    res.send(req.params.id);
+  });
   
 };
