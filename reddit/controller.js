@@ -21,11 +21,7 @@ module.exports = function(app){
 
   app.get('/api/posts', function(req, res) {
     connection.query('SELECT * FROM messages;', function(err, rows) {
-      if (err) {
-        console.log(err.toString());
-        res.status(500).send('Database error');
-        return;
-      }
+      checkDBerror(err, res);
       res.send(rows);
     });
   });
@@ -39,17 +35,9 @@ module.exports = function(app){
         res.send('Missing info. You need both title and url.');
     } else {
       connection.query(`INSERT INTO messages (title, url, timestamp, score) VALUES(?, ?, ?, ?);`, [title, url, timestamp, score], function(err, rows) {
-        if (err) {
-          console.log(err.toString());
-          res.status(500).send('Database error');
-          return;
-        }
+        checkDBerror(err, res);
         connection.query(`SELECT * FROM messages WHERE title = ? AND url = ? AND timestamp = ? AND score = ?;`, [title, url, timestamp, score], function(err, rows) {
-          if (err) {
-            console.log(err.toString());
-            res.status(500).send('Database error');
-            return;
-          }
+          checkDBerror(err, res);
           res.send(rows);
         });
       });
@@ -57,36 +45,47 @@ module.exports = function(app){
   });
 
   app.put('/api/posts/:id/downvote', function(req, res) {
-    connection.query(`UPDATE messages SET score = score - 1 WHERE id = ?;`, [req.params.id], function(err, rows) {
-      if (err) {
-        console.log(err.toString());
-        res.status(500).send('Database error');
-        return;
-      }
-      connection.query(`SELECT * FROM messages WHERE id = ?;`, [req.params.id], function(err, rows) {
-        if (err) {
-          console.log(err.toString());
-          res.status(500).send('Database error');
-          return;
-        }
+    const id = req.params.id;
+    connection.query(`UPDATE messages SET score = score - 1 WHERE id = ?;`, [id], function(err, rows) {
+      checkDBerror(err, res);
+      connection.query(`SELECT * FROM messages WHERE id = ?;`, [id], function(err, rows) {
+        checkDBerror(err, res);
         res.send(rows);
       });
     });
   });
 
   app.put('/api/posts/:id/upvote', function(req, res) {
-    connection.query(`UPDATE messages SET score = score + 1 WHERE id = ?;`, [req.params.id], function(err, rows) {
-      if (err) {
-        console.log(err.toString());
-        res.status(500).send('Database error');
-        return;
-      }
-      connection.query(`SELECT * FROM messages WHERE id = ?;`, [req.params.id], function(err, rows) {
-        if (err) {
-          console.log(err.toString());
-          res.status(500).send('Database error');
-          return;
-        }
+    const id = req.params.id;
+    connection.query(`UPDATE messages SET score = score + 1 WHERE id = ?;`, [id], function(err, rows) {
+      checkDBerror(err, res);
+      connection.query(`SELECT * FROM messages WHERE id = ?;`, [id], function(err, rows) {
+        checkDBerror(err, res);
+        res.send(rows);
+      });
+    });
+  });
+
+  app.delete('/api/posts/:id/delete', function(req, res) {
+    const id = req.params.id;
+    connection.query(`SELECT * FROM messages WHERE id = ?;`, [id], function(err, rows) {
+      checkDBerror(err, res);
+      deletedrows = rows;
+      connection.query(`DELETE FROM messages WHERE id = ?;`, [id], function(err, rows) {
+        checkDBerror(err, res);
+        res.send(deletedrows);
+      });
+    });
+  });
+
+  app.put('/api/posts/:id/edit', function(req, res) {
+    const id = req.params.id;
+    const title = req.body.title;
+    const url = req.body.url;
+    connection.query(`UPDATE messages SET title = ?, url = ? WHERE id = ?;`, [title, url, id], function(err, rows) {
+      checkDBerror(err, res);
+      connection.query(`SELECT * FROM messages WHERE id = ?;`, [id], function(err, rows) {
+        checkDBerror(err, res);
         res.send(rows);
       });
     });
@@ -96,4 +95,12 @@ module.exports = function(app){
     res.render('home');
   });
   
+  const checkDBerror = (err, res) => {
+    if (err) {
+      console.log(err.toString());
+      res.status(500).send('Database error');
+      return;
+    }
+  };
+
 };
