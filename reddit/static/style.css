@@ -18,11 +18,7 @@ span {
   border-style: solid;
 }
 
-.title {
-  font-size: 30px;
-}
-
-.url {
+.title, .url, .score, .upvote, .downvote {
   font-size: 30px;
 }
 
@@ -32,6 +28,5 @@ span {
 }
 
 .score {
-  font-size: 30px;
   display: inline;
 }
