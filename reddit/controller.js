@@ -38,13 +38,20 @@ module.exports = function(app){
     if(title == null || url == null) {
         res.send('Missing info. You need both title and url.');
     } else {
-      connection.query(`INSERT INTO messages (title, url, timestamp, score) VALUES(?, ?, ?, ?)`, [title, url, timestamp, score], function(err, rows) {
+      connection.query(`INSERT INTO messages (title, url, timestamp, score) VALUES(?, ?, ?, ?);`, [title, url, timestamp, score], function(err, rows) {
         if (err) {
           console.log(err.toString());
           res.status(500).send('Database error');
           return;
         }
-        res.send('Message created.');
+        connection.query(`SELECT * FROM messages WHERE title = ? AND url = ? AND timestamp = ? AND score = ?;`, [title, url, timestamp, score], function(err, rows) {
+          if (err) {
+            console.log(err.toString());
+            res.status(500).send('Database error');
+            return;
+          }
+          res.send(rows);
+        });
       });
     }
   });
