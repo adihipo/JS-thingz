@@ -1,4 +1,5 @@
 const messageContainer = document.getElementById('messages');
+const button = document.getElementById('button');
 const ourRequest = new XMLHttpRequest();
 
 const ajax = () => {
@@ -8,6 +9,7 @@ const ajax = () => {
     renderHTML(ourData);
     vote();
     del();
+    edit();
   };
   ourRequest.send();
 }
@@ -15,7 +17,7 @@ const ajax = () => {
 ajax();
 setInterval(() => {
   ajax();
-}, 5000);
+}, 500);
 
 function renderHTML(data) {
   messageContainer.innerHTML = '';
@@ -33,6 +35,23 @@ function renderHTML(data) {
     HTMLString += '</div>';
   }
   messageContainer.insertAdjacentHTML('beforeend', HTMLString);
+};
+
+button.onclick = () => {
+  const title = document.getElementById('title').value;
+  const url = document.getElementById('url').value;
+  createMessage(title, url);
+};
+
+function edit() {
+  const edits = document.getElementsByClassName('edit');
+
+  for(let i = 0; i < edits.length; i++) {
+    edits[i].onclick = () => {
+      editMessage(edits[i].name);
+      ajax();
+    };
+  };
 };
 
 function del() {
@@ -80,5 +99,25 @@ function downVote(id) {
 function deleteMessage(id) {
   fetch(`http://localhost:8080/api/posts/${id}/delete`, {
     method: 'delete',
+  }).then((resp) => (resp.body));
+};
+
+function editMessage(id) {
+  fetch(`http://localhost:8080/api/posts/${id}/edit`, {
+    method: 'put',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: '{"title": "test","url": "test"}',
+  }).then((resp) => (resp.body));
+};
+
+function createMessage(title, url) {
+  fetch(`http://localhost:8080/api/posts`, {
+    method: 'post',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: '{"title": "' + title + '","url": "' + url + '"}',
   }).then((resp) => (resp.body));
 };

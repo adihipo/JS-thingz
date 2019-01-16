@@ -50,6 +50,26 @@ body {
   padding: 5px;
 }
 
+#button {
+  background: url("/static/button.jpg") no-repeat;
+  background-size: cover;
+  height: 50px;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+#button:hover {
+  text-decoration: aliceblue underline;
+}
+
+.form-content p {
+  color: white;
+  text-align: center;
+  font-size: 40px;
+}
+
 .info-content {
   margin: 5%;
 }
