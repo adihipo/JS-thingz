@@ -77,6 +77,7 @@ body {
 
 .info-content {
   margin: 5%;
+  padding: 5%;
 }
 
 img {
@@ -92,19 +93,28 @@ span {
 .message {
   background-color: grey;
   color: white;
-  padding: 10px;
+  padding: 20px;
   margin-bottom: 2%;
   display: block;
   border-radius: 15px;
 }
 
-.title, .url, .score, .upvote, .downvote, .delete, .edit {
+.title, .url, .upvote, .downvote, .delete, .edit {
+  font-size: 25px;
+}
+
+.score {
   font-size: 30px;
+  font-weight: 600;
+}
+
+.upvote, .downvote, .delete, .edit, .score {
+  float: right;
+  padding: 5px;
 }
 
 .time {
   font-size: 15px;
-  display: inline;
 }
 
 .score {
