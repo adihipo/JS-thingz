@@ -40,7 +40,12 @@ function renderHTML(data) {
 button.onclick = () => {
   const title = document.getElementById('title').value;
   const url = document.getElementById('url').value;
-  createMessage(title, url);
+  if(title == '' || url =='') {
+    alert('You are missing title, url or both. Pls fill in normally.');
+  } else {
+    createMessage(title, url);
+    ajax();
+  }
 };
 
 function edit() {
