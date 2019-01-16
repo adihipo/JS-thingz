@@ -23,10 +23,12 @@ function renderHTML(data) {
     HTMLString += '<div class="message">';
     HTMLString += '<span class="title"> title: ' + data[i].title + ' </span>';
     HTMLString += '<span class="url"> url: ' + data[i].url + ' </span>';
-    HTMLString += '<a class="upvote fas fa-plus"" id="' + data[i].id + '"></a>';
+    HTMLString += '<a class="upvote fas fa-plus"" name="' + data[i].id + '"></a>';
     HTMLString += '<span class="score"> score: ' + data[i].score + ' </span>';
-    HTMLString += '<a class="downvote fa fa-minus" id="' + data[i].id + '"></a>';
+    HTMLString += '<a class="downvote fa fa-minus" name="' + data[i].id + '"></a>';
     HTMLString += '<span class="time"> posted at: ' + data[i].timestamp + ' </span>';
+    HTMLString += '<a class="delete fas fa-trash-alt"" name="' + data[i].id + '"></a>';
+    HTMLString += '<a class="edit fas fa-edit"" name="' + data[i].id + '"></a>';
     HTMLString += '</div>';
   }
   messageContainer.insertAdjacentHTML('beforeend', HTMLString);
@@ -38,14 +40,14 @@ function vote() {
 
   for(let i = 0; i < upvotes.length; i++) {
     upvotes[i].onclick = () => {
-      upVote(upvotes[i].id);
+      upVote(upvotes[i].name);
       ajax();
     };
   };
 
   for(let i = 0; i < downvotes.length; i++) {
     downvotes[i].onclick = () => {
-      downVote(downvotes[i].id);
+      downVote(downvotes[i].name);
       ajax();
     };
   };
