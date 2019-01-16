@@ -38,12 +38,14 @@ function renderHTML(data) {
 };
 
 button.onclick = () => {
-  const title = document.getElementById('title').value;
-  const url = document.getElementById('url').value;
-  if(title == '' || url =='') {
+  const title = document.getElementById('title');
+  const url = document.getElementById('url');
+  if(title.value == '' || url.value =='') {
     alert('You are missing title, url or both. Pls fill in normally.');
   } else {
-    createMessage(title, url);
+    createMessage(title.value, url.value);
+    title.value = '';
+    url.value = '';
     ajax();
   }
 };
