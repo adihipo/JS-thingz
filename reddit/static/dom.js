@@ -7,6 +7,7 @@ const ajax = () => {
     const ourData = JSON.parse(ourRequest.responseText);
     renderHTML(ourData);
     vote();
+    del();
   };
   ourRequest.send();
 }
@@ -32,6 +33,17 @@ function renderHTML(data) {
     HTMLString += '</div>';
   }
   messageContainer.insertAdjacentHTML('beforeend', HTMLString);
+};
+
+function del() {
+  const deletes = document.getElementsByClassName('delete');
+
+  for(let i = 0; i < deletes.length; i++) {
+    deletes[i].onclick = () => {
+      deleteMessage(deletes[i].name);
+      ajax();
+    };
+  };
 };
 
 function vote() {
@@ -62,5 +74,11 @@ function upVote(id) {
 function downVote(id) {
   fetch(`http://localhost:8080/api/posts/${id}/downvote`, {
     method: 'put',
+  }).then((resp) => (resp.body));
+};
+
+function deleteMessage(id) {
+  fetch(`http://localhost:8080/api/posts/${id}/delete`, {
+    method: 'delete',
   }).then((resp) => (resp.body));
 };

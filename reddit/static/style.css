@@ -73,7 +73,7 @@ span {
   border-radius: 15px;
 }
 
-.title, .url, .score, .upvote, .downvote {
+.title, .url, .score, .upvote, .downvote, .delete, .edit {
   font-size: 30px;
 }
 
@@ -86,6 +86,6 @@ span {
   display: inline;
 }
 
-.upvote:hover, .downvote:hover {
+.upvote:hover, .downvote:hover, .delete:hover, .edit:hover {
   color: blue;
 }
