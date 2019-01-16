@@ -1,5 +1,7 @@
 const messageContainer = document.getElementById('messages');
-const button = document.getElementById('button');
+const buttonpost = document.getElementsByClassName('button')[0];
+const buttonedit = document.getElementsByClassName('button')[1];
+const editform = document.getElementsByClassName('form')[1];
 const ourRequest = new XMLHttpRequest();
 
 const ajax = () => {
@@ -37,13 +39,29 @@ function renderHTML(data) {
   messageContainer.insertAdjacentHTML('beforeend', HTMLString);
 };
 
-button.onclick = () => {
-  const title = document.getElementById('title');
-  const url = document.getElementById('url');
+buttonpost.onclick = () => {
+  const title = document.getElementsByClassName('formtitle')[0];
+  const url = document.getElementsByClassName('formurl')[0];
   if(title.value == '' || url.value =='') {
     alert('You are missing title, url or both. Pls fill in normally.');
   } else {
     createMessage(title.value, url.value);
+    title.value = '';
+    url.value = '';
+    ajax();
+  }
+};
+
+buttonedit.onclick = () => {
+  const title = document.getElementsByClassName('formtitle')[1];
+  const url = document.getElementsByClassName('formurl')[1];
+  const id = editform.id;
+  if(title.value == '' || url.value =='') {
+    alert('You are missing title, url or both. Pls fill in normally.');
+  } else {
+    editMessage(id, title.value, url.value);
+    editform.id = '';
+    editform.classList.add('hidden');
     title.value = '';
     url.value = '';
     ajax();
@@ -55,8 +73,8 @@ function edit() {
 
   for(let i = 0; i < edits.length; i++) {
     edits[i].onclick = () => {
-      editMessage(edits[i].name);
-      ajax();
+      editform.classList.remove('hidden');
+      editform.id = edits[i].name;
     };
   };
 };
@@ -109,13 +127,13 @@ function deleteMessage(id) {
   }).then((resp) => (resp.body));
 };
 
-function editMessage(id) {
+function editMessage(id, title, url) {
   fetch(`http://localhost:8080/api/posts/${id}/edit`, {
     method: 'put',
     headers: {
       "Content-Type": "application/json",
     },
-    body: '{"title": "test","url": "test"}',
+    body: '{"title": "' + title + '","url": "' + url + '"}',
   }).then((resp) => (resp.body));
 };
 

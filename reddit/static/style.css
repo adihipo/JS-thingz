@@ -33,6 +33,11 @@ body {
 .form {
   background-color: gray;
   border-radius: 10px;
+  margin-top: 10px;
+}
+
+.form-content h3 {
+  text-align: center;
 }
 
 .form-content {
@@ -50,7 +55,7 @@ body {
   padding: 5px;
 }
 
-#button {
+.button {
   background: url("/static/button.jpg") no-repeat;
   background-size: cover;
   height: 50px;
@@ -60,7 +65,7 @@ body {
   border-radius: 10px;
 }
 
-#button:hover {
+.button:hover {
   text-decoration: aliceblue underline;
 }
 
@@ -108,4 +113,8 @@ span {
 
 .upvote:hover, .downvote:hover, .delete:hover, .edit:hover {
   color: blue;
+}
+
+.hidden {
+  display: none;
 }
