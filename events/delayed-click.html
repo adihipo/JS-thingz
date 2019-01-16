@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Delaye click</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <button>CLICK</button>
+  <h1>2 seconds after click this will change</h1>
+  
+  <script>
+    const button = document.getElementsByTagName('button')[0];
+    const h1 = document.getElementsByTagName('h1')[0];
+
+    button.addEventListener('click', changeh1);
+
+    function changeh1() {
+      setInterval(() => {
+        h1.textContent = 'VOILÁ';
+      }, 2000);
+    };
+  </script>
+</body>
+</html>
