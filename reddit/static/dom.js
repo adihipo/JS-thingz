@@ -1,6 +1,4 @@
 const messageContainer = document.getElementById('messages');
-const upvotes = document.getElementsByClassName('upvote');
-const downvotes = document.getElementsByClassName('downvote');
 const ourRequest = new XMLHttpRequest();
 
 const ajax = () => {
@@ -8,6 +6,7 @@ const ajax = () => {
   ourRequest.onload = function() {
     const ourData = JSON.parse(ourRequest.responseText);
     renderHTML(ourData);
+    vote();
   };
   ourRequest.send();
 }
@@ -31,4 +30,35 @@ function renderHTML(data) {
     HTMLString += '</div>';
   }
   messageContainer.insertAdjacentHTML('beforeend', HTMLString);
+};
+
+function vote() {
+  const upvotes = document.getElementsByClassName('upvote');
+  const downvotes = document.getElementsByClassName('downvote');
+
+  for(let i = 0; i < upvotes.length; i++) {
+    upvotes[i].onclick = () => {
+      upVote(upvotes[i].id);
+      ajax();
+    };
+  };
+
+  for(let i = 0; i < downvotes.length; i++) {
+    downvotes[i].onclick = () => {
+      downVote(downvotes[i].id);
+      ajax();
+    };
+  };
+}
+
+function upVote(id) {
+  fetch(`http://localhost:8080/api/posts/${id}/upvote`, {
+    method: 'put',
+  }).then((resp) => (resp.body));
+};
+
+function downVote(id) {
+  fetch(`http://localhost:8080/api/posts/${id}/downvote`, {
+    method: 'put',
+  }).then((resp) => (resp.body));
 };

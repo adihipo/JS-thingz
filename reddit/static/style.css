@@ -30,3 +30,7 @@ span {
 .score {
   display: inline;
 }
+
+.upvote:hover, .downvote:hover {
+  color: blue;
+}

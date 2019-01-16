@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Workshop: EventListeners</title>
+  </head>
+  <body>
+    <ul>
+      <li>apple</li>
+      <li>balloon</li>
+      <li>cat</li>
+      <li>dolphin</li>
+    </ul>
+    <button>How many items are in the list?</button>
+    <p class="result">dunno :(</p>
+
+    <!-- You can work in the html or in a separate js file. Like:
+    <script>
+      On the click of the button,
+      Count the items in the list
+      And display the result in the result element.
+    </script> -->
+    <script>
+      const button = document.getElementsByTagName('button')[0];
+      button.addEventListener('click', collect);
+
+      function collect() {
+        const lis = document.getElementsByTagName('li');
+        const result = document.getElementsByClassName('result')[0];
+        result.textContent = lis.length;
+      }
+    </script>
+  </body>
+</html>
