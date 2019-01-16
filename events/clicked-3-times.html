@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>3 clicks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <button>CLICK</button>
+  <h1>After 5 seconds then after 3 clicks this will change</h1>
+  
+  <script>
+    const button = document.getElementsByTagName('button')[0];
+    const h1 = document.getElementsByTagName('h1')[0];
+    var clicks = 0;
+
+    window.addEventListener('DOMContentLoaded', function(){
+      setTimeout(() => {
+        button.addEventListener('click', changeh1);
+      }, 5000)
+    });
+
+    function changeh1() {
+      clicks++;
+      if(clicks >= 3) {
+        h1.textContent = 'VOILÁ';
+      }
+    };
+  </script>
+</body>
+</html>
