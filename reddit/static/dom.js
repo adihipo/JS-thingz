@@ -26,13 +26,15 @@ function renderHTML(data) {
   var HTMLString = "";
   for(let i = 0; i < data.length; i++) {
     HTMLString += '<div class="message">';
-    HTMLString += '<span class="title"> title: ' + data[i].title + ' </span>';
+    HTMLString += '<span>title: </span>';
+    HTMLString += '<span class="title" id="msgtitle' + data[i].id + '">' + data[i].title + ' </span>';
     HTMLString += '<a class="delete fas fa-trash-alt"" name="' + data[i].id + '"></a>';
     HTMLString += '<a class="edit fas fa-edit"" name="' + data[i].id + '"></a>';
     HTMLString += '<a class="downvote fa fa-minus" name="' + data[i].id + '"></a>';
     HTMLString += '<a class="upvote fas fa-plus"" name="' + data[i].id + '"></a>';
     HTMLString += '<span class="score">' + data[i].score + '</span>';
-    HTMLString += '<span class="url"> url: ' + data[i].url + ' </span>';
+    HTMLString += '<span>url: </span>';
+    HTMLString += '<span class="url"  id="msgurl' + data[i].id + '">' + data[i].url + ' </span>';
     HTMLString += '<span class="time"> posted at: ' + data[i].timestamp + ' </span>';
     HTMLString += '</div>';
   }
@@ -70,9 +72,13 @@ buttonedit.onclick = () => {
 
 function edit() {
   const edits = document.getElementsByClassName('edit');
+  const title = document.getElementsByClassName('formtitle')[1];
+  const url = document.getElementsByClassName('formurl')[1];
 
   for(let i = 0; i < edits.length; i++) {
     edits[i].onclick = () => {
+      title.value = document.getElementById('msgtitle' + (edits[i].name)).textContent;
+      url.value = document.getElementById('msgurl' + (edits[i].name)).textContent;
       editform.classList.remove('hidden');
       editform.id = edits[i].name;
     };
