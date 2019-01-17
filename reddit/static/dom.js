@@ -25,9 +25,8 @@ function renderHTML(data) {
   messageContainer.innerHTML = '';
   var HTMLString = "";
   for(let i = 0; i < data.length; i++) {
-    HTMLString += '<div class="message">';
-    HTMLString += '<span>title: </span>';
-    HTMLString += '<span class="title" id="msgtitle' + data[i].id + '">' + data[i].title + ' </span>';
+    HTMLString += '<fieldset class="message">';
+    HTMLString += '<legend class="title" id="msgtitle' + data[i].id + '">' + data[i].title + ' </legend>';
     HTMLString += '<a class="delete fas fa-trash-alt"" name="' + data[i].id + '"></a>';
     HTMLString += '<a class="edit fas fa-edit"" name="' + data[i].id + '"></a>';
     HTMLString += '<a class="downvote fa fa-minus" name="' + data[i].id + '"></a>';
@@ -36,7 +35,7 @@ function renderHTML(data) {
     HTMLString += '<span>url: </span>';
     HTMLString += '<span class="url"  id="msgurl' + data[i].id + '">' + data[i].url + ' </span>';
     HTMLString += '<span class="time"> posted at: ' + data[i].timestamp + ' </span>';
-    HTMLString += '</div>';
+    HTMLString += '</fieldset>';
   }
   messageContainer.insertAdjacentHTML('beforeend', HTMLString);
 };

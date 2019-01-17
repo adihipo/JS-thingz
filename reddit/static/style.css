@@ -87,12 +87,12 @@ img {
 }
 
 span {
-  display: block;
+  display: inline;
 }
 
 .message {
   background-color: grey;
-  color: white;
+  font-weight: 800;
   padding: 20px;
   margin-bottom: 2%;
   display: block;
@@ -115,6 +115,7 @@ span {
 
 .time {
   font-size: 15px;
+  display: block;
 }
 
 .score {
@@ -127,4 +128,13 @@ span {
 
 .hidden {
   display: none;
+}
+
+fieldset {
+  border-style: solid;
+}
+
+legend {
+  background-color: aliceblue;
+  border-radius: 5px;
 }
