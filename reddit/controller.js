@@ -22,7 +22,7 @@ module.exports = function(app){
   app.get('/api/posts', function(req, res) {
     connection.query('SELECT * FROM messages;', function(err, rows) {
       checkDBerror(err, res);
-      res.send(rows);
+      res.status(200).json(rows);
     });
   });
 
@@ -32,13 +32,13 @@ module.exports = function(app){
     const timestamp = time();
     const score = 0;
     if(title == null || url == null) {
-        res.send('Missing info. You need both title and url.');
+        res.send('{Missing info. You need both title and url.}');
     } else {
       connection.query(`INSERT INTO messages (title, url, timestamp, score) VALUES(?, ?, ?, ?);`, [title, url, timestamp, score], function(err, rows) {
         checkDBerror(err, res);
         connection.query(`SELECT * FROM messages WHERE title = ? AND url = ? AND timestamp = ? AND score = ?;`, [title, url, timestamp, score], function(err, rows) {
           checkDBerror(err, res);
-          res.send(rows);
+          res.status(200).json(rows);
         });
       });
     }
@@ -50,7 +50,7 @@ module.exports = function(app){
       checkDBerror(err, res);
       connection.query(`SELECT * FROM messages WHERE id = ?;`, [id], function(err, rows) {
         checkDBerror(err, res);
-        res.send(rows);
+        res.status(200).json(rows);
       });
     });
   });
@@ -61,7 +61,7 @@ module.exports = function(app){
       checkDBerror(err, res);
       connection.query(`SELECT * FROM messages WHERE id = ?;`, [id], function(err, rows) {
         checkDBerror(err, res);
-        res.send(rows);
+        res.status(200).json(rows);
       });
     });
   });
@@ -73,7 +73,7 @@ module.exports = function(app){
       deletedrows = rows;
       connection.query(`DELETE FROM messages WHERE id = ?;`, [id], function(err, rows) {
         checkDBerror(err, res);
-        res.send(deletedrows);
+        res.status(200).json(deletedrows);
       });
     });
   });
@@ -86,7 +86,7 @@ module.exports = function(app){
       checkDBerror(err, res);
       connection.query(`SELECT * FROM messages WHERE id = ?;`, [id], function(err, rows) {
         checkDBerror(err, res);
-        res.send(rows);
+        res.status(200).json(rows);
       });
     });
   });
