@@ -3,9 +3,9 @@ const app = express();
 
 app.get('/groot', (req, res) => {
   if(req.query.message) {
-    res.send('{"received": "' + req.query.message + '","translated": "I am Groot!"}');
+    res.status(200).json('{"received": "' + req.query.message + '","translated": "I am Groot!"}');
   } else {
-    res.send('{"error": "I am Groot!"}');
+    res.status(404).json('{"error": "I am Groot!"}');
   }
 });
 
