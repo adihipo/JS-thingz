@@ -12,6 +12,17 @@ body {
   margin-bottom: 10px;
 }
 
+.banner p {
+  color: white;
+  text-align: center;
+  padding-top: 50px;
+  font-size: 30px;
+}
+
+.p2 {
+  padding-left: 400px;
+}
+
 .messages {
   float: left;
   width: 60%;
