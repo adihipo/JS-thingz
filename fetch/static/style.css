@@ -1,0 +1,17 @@
+p {
+  font-size: 17px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+button {
+  font-size: 17px;
+  font-family: 'Courier New', Courier, monospace;
+  border: none;
+  width: 150px;
+  margin-top: 50px;
+  margin-left: 550px;
+  height: auto;
+  background-color: burlywood;
+  border-radius: 10px;
+  outline: none;
+}
