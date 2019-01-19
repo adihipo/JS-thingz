@@ -1,0 +1,10 @@
+<ul>
+  <li *ngFor="let panda of pandas" (click)="selectPanda(panda)">
+    <p>{{panda.name | uppercase}}</p>
+    <p>{{panda.male}}</p>
+    <p>{{panda.health}}</p>
+    <p>{{panda.attackPower}}</p>
+  </li>
+</ul>
+
+<app-detail [myPanda]="selectedPanda"></app-detail>

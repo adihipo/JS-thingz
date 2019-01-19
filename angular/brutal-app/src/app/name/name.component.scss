@@ -1,0 +1,22 @@
+$div-background: linear-gradient(#000, #FFF);
+$panda-style: Calibri, Helvetica, sans-serif;
+
+ul {
+  list-style: none;
+  width: 100px;
+  background: green;
+  border-radius: 10px;
+  padding: 5px;
+  
+  li {
+    width: 80%;
+    background: $div-background;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: $panda-style;
+    cursor: pointer;
+    &:hover {
+      background: linear-gradient(#FFF, #000);
+    }
+  }
+}
